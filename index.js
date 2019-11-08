@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
     //SEARCH FORM FUNCTION
     document.getElementById('search-form').addEventListener('submit', function(e){
         e.preventDefault();
+        searchContent = $("#search-bar").value
+
         renderMovies(movieData)//parameter is array of objects
     })
 });
@@ -28,14 +30,15 @@ document.addEventListener('DOMContentLoaded', function() {
             return currentMovie.imdbID == movieID
         })
         console.log(movie)
+
         var watchlistJSON = localStorage.getItem('watchlist')
         var watchlist = JSON.parse(watchlistJSON)
 
-        if (watchlist == null){
-            watchlist = []
-        } else{
-            watchlist.push(movie)
-            watchlistJSON = JSON.stringify(watchlist)
-            localStorage.setItem('watchlist', watchlistJSON)
+        if (watchlist === null){
+            watchlist = [];
         }
+             watchlist.push(movie)
+           
+        watchlistJSON = JSON.stringify(watchlist)
+        localStorage.setItem('watchlist', watchlistJSON)
     }
